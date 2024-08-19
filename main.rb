@@ -1,7 +1,22 @@
 #!/usr/bin/env ruby
 require "tty-prompt"
 
+def clear_screen
+  case RUBY_PLATFORM
+  when /win32|win64|dos|mswin|cygwin/
+    # wait 5 seconds
+    sleep(5)
+    system("cls") # Windows
+  else
+    sleep(5)
+    system("clear") # Unix/Linux/MacOS
+  end
+end
+
+
 def main
+    puts "Clearing Screen in 5..4.."
+    clear_screen
     prompt = TTY::Prompt.new
 
     puts "---------------------"
@@ -10,18 +25,28 @@ def main
     puts " "
     puts " "
     puts "Welcome to your Ruby Character Builder"
+    clear_screen
     puts "Let's Begin!"
+    clear_screen
 
-    puts "What is your name: "
+    puts "What Shall we Call You: "
     name = gets.chomp
 
-    greetings = ["Hallo ", "Que Pasa ", "My Round ", "Wassup", "Bonjour ", "Salve ", "Konnichiwa "]
-    character_type = prompt.select(greetings.sample + name + "! Welcome to Character Builder. We have a suit of four characters to begin. What type of Character Would You Like to Build?", %w(Ninja Tech Fantasy Elemental))
+    greetings = ["Hallo ", "Que Pasa ", "My Round ", "Wassup ", "Bonjour ", "Salve ", "Konnichiwa "]
+    character_type = prompt.select(greetings.sample + name + "! For what shall we Build your new Character today?", %w(Video Game Story))
     puts " "
     puts " "
 
-    confirm = ["Cool", "Perfect", "Interesting Choice", "Powerful", "Unique", "Excellent"]
-    puts confirm.sample + "! You selected " + character_type + ". Let's Begin."
+    confirm = ["Cool", "Perfect", "Interesting Choice", "Powerful", "Unique", "Excellent", "Marvelous"]
+
+    character_power = prompt.select("Pick a power for this " + character_type + " character", %w(Element Super Skill))
+    puts confirm.sample + "! You selected a " + character_type + " character with " + character_power + " powers. Let's Begin."
+    puts "Clearing Screen in 5..4.."
+    clear_screen
+
+    puts "| Customize Your " + character_type + " character |"
+
+
 
     character_name = prompt.ask("What is the character's Name? ") do |i|
         i.required true
@@ -30,20 +55,29 @@ def main
     end
 
     puts character_name + " is now ready to be customized."
+    sleep(5)
+    puts "We have preselected the next data fields to save you time and make the build more interesting."
+
+    # random int
+    age = rand(16..231)
+    height = rand(48...96)
+    weight = rand(40...300)
+
+
+    puts character_name + " is " + age.to_s + " years, " + height.to_s + " inches, and weighs " + weight.to_s + " pounds."
     puts " "
+    sleep(8)
+    puts "Clearing Screen in 5..4.."
+    clear_screen
 
     # use colorize to make this statement standout
     puts "ATTRIBUTES AND SKILLS"
     puts "Be mindful when selecting; Each option affects the other!"
 
-    # pick a height range
-    puts "Pick a Height"
-    # -- if 
-    # weight range
     # pick wear type
     # tool selection
-    # random element & element color
-    # random skill attributes set [speed, source, power, witts, stealth, defense, health]
+    # random skill power
+    # set [speed, witts, stealth, defense, health, attack]
 
     # print character
     # save character to database?
