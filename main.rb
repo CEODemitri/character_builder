@@ -72,7 +72,11 @@ def main
 
     # use colorize to make this statement standout
     puts "ATTRIBUTES AND SKILLS"
-    puts "Be mindful when selecting; Each option affects the other!"
+    puts "Name: " + character_name
+    puts "Age: " + age.to_s + " years"
+    puts "Height: " + height.to_s + " inches"
+    puts "Weight: " + weight.to_s + " pounds"
+    puts "Be mindful when selecting; Each option affects the another!"
 
     # pick wear type
     # tool selection
