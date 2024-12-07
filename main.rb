@@ -69,7 +69,7 @@ def main
     sleep(8)
     puts "Clearing Screen in 5..4.."
     clear_screen
-
+   
     # use colorize to make this statement standout
     puts "ATTRIBUTES AND SKILLS"
     puts "Name: " + character_name
@@ -79,10 +79,48 @@ def main
     puts "Be mindful when selecting; Each option affects the another!"
 
     # pick wear type
-    # tool selection
-    # random skill power
-    # set [speed, witts, stealth, defense, health, attack]
+    character_wear = prompt.select("Now select the wear for " + character_name + ". ", %w(Leather Iron Mythical)) 
+    puts confirm.sample + "! \n"
+    puts "Lucky you: you have chosen: "
+    if character_wear == "Leather"
+      health = rand(33..50) # => exclusive
+      speed = rand(50...79)
+      puts "Armor: " + character_wear
+      puts "Health: " + health.to_s
+      puts "Speed: " + speed.to_s
+    elsif character_wear == "Iron"
+      health = rand(50...79) #=> inclusive
+      speed = rand(33..50)
+      puts "Armor: " + character_wear
+      puts "Health: " + health.to_s
+      puts "Speed: " + speed.to_s
+    else
+      health = rand(80...89)
+      speed = rand(33..50)
+      puts "Armor: " + character_wear
+      puts "Health: " + health.to_s
+      puts "Speed: " + speed.to_s
+    end
 
+    # tool selection
+    if character_type == "Element"
+      character_tool = prompt.select("Pick a tool.", %w(Wand Staff Runes))
+
+    elsif character_type == "Element"
+      character_tool = prompt.select("Pick a tool.", %w(Wand Staff Runes))
+
+    else 
+      character_tool = prompt.select("Pick a tool.", %w(Wand Staff Runes))
+
+
+    end
+    # 
+    # set [speed, witts, stealth, defense, health, attack]
+    puts " "
+    puts "Clearing screen in 20 seconds...\n"
+    puts "19..18.."
+    sleep(20)
+    clear_screen
     # print character
     # save character to database?
 
