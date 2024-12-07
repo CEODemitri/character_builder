@@ -83,13 +83,13 @@ def main
     puts confirm.sample + "! \n"
     puts "Lucky you: you have chosen: "
     if character_wear == "Leather"
-      health = rand(33..50) # => exclusive
+      health = rand(33..50) # => inclusive
       speed = rand(50...79)
       puts "Armor: " + character_wear
       puts "Health: " + health.to_s
       puts "Speed: " + speed.to_s
     elsif character_wear == "Iron"
-      health = rand(50...79) #=> inclusive
+      health = rand(50...79) #=> exclusive
       speed = rand(33..50)
       puts "Armor: " + character_wear
       puts "Health: " + health.to_s
@@ -105,14 +105,75 @@ def main
     # tool selection
     if character_type == "Element"
       character_tool = prompt.select("Pick a tool.", %w(Wand Staff Runes))
+      if character_tool == "Wand"
+        skill = rand(50...79)
+        defense = rand(33..50)
+        puts "Tool: " + character_tool
+        puts "Skill: " + skill.to_s
+        puts "Defense: " + defense.to_s
 
-    elsif character_type == "Element"
-      character_tool = prompt.select("Pick a tool.", %w(Wand Staff Runes))
+      elsif character_tool == "Staff"
+        skill = rand(80...90)
+        defense = rand(50...79)
+        puts "Tool: " + character_tool
+        puts "Skill: " + skill.to_s
+        puts "Defense: " + defense.to_s
+
+      else 
+        skill = rand(33..50)
+        defense = rand(80...90)
+        puts "Tool: " + character_tool
+        puts "Skill: " + skill.to_s
+        puts "Defense: " + defense.to_s
+      end
+
+    elsif character_type == "Super"
+      character_tool = prompt.select("Pick a tool.", %w(Ring Magic Cape))
+      if character_tool == "Ring"
+        skill = rand(50...79)
+        defense = rand(33..50)
+        puts "Tool: " + character_tool
+        puts "Skill: " + skill.to_s
+        puts "Defense: " + defense.to_s
+
+      elsif character_tool == "Magic"
+        skill = rand(80...90)
+        defense = rand(50...79)
+        puts "Tool: " + character_tool
+        puts "Skill: " + skill.to_s
+        puts "Defense: " + defense.to_s
+
+      else 
+        skill = rand(33..50)
+        defense = rand(80...90)
+        puts "Tool: " + character_tool
+        puts "Skill: " + skill.to_s
+        puts "Defense: " + defense.to_s
+      end
 
     else 
-      character_tool = prompt.select("Pick a tool.", %w(Wand Staff Runes))
+      character_tool = prompt.select("Pick a tool.", %w(Arrow Gear Hammer))
+      if character_tool == "Arrow"
+        skill = rand(50...79)
+        defense = rand(33..50)
+        puts "Tool: " + character_tool
+        puts "Skill: " + skill.to_s
+        puts "Defense: " + defense.to_s
 
+      elsif character_tool == "Gear"
+        skill = rand(80...90)
+        defense = rand(50...79)
+        puts "Tool: " + character_tool
+        puts "Skill: " + skill.to_s
+        puts "Defense: " + defense.to_s
 
+      else 
+        skill = rand(33..50)
+        defense = rand(80...90)
+        puts "Tool: " + character_tool
+        puts "Skill: " + skill.to_s
+        puts "Defense: " + defense.to_s
+      end
     end
     # 
     # set [speed, witts, stealth, defense, health, attack]
@@ -123,9 +184,6 @@ def main
     clear_screen
     # print character
     # save character to database?
-
-    
-
 end
 
 main if __FILE__ == $PROGRAM_NAME
